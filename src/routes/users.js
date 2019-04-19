@@ -19,6 +19,8 @@ router.post('/register', (req, res)=> {
     const name = req.body.name;
     const email = req.body.email;
     const username = req.body.username;
+    const address = req.body.address;
+    const phone = req.body.phone;
     const password = req.body.password;
     const password2 = req.body.password2;
 
@@ -26,6 +28,9 @@ router.post('/register', (req, res)=> {
     req.checkBody('email', 'Email is required').notEmpty();
     req.checkBody('email', 'Email is not valid').isEmail();
     req.checkBody('username', 'Username is required').notEmpty();
+    req.checkBody('address', 'Address is required').notEmpty();
+    req.checkBody('phone', 'Phone number is required').notEmpty();
+    req.checkBody('phone', 'en-US', 'Correct US number is required').isMobilePhone();
     req.checkBody('password', 'Password is required').notEmpty();
     req.checkBody('password', 'Password must be at least 8 characters long including one upper case, one lower case and one special characther').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
     req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
@@ -54,6 +59,8 @@ router.post('/register', (req, res)=> {
                     name:name,
                     email:email,
                     username:username,
+                    address:address,
+                    phone:phone,
                     password:password
                 });
         
