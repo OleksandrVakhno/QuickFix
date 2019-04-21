@@ -23,19 +23,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <% nav.forEach((nav)=>{ %>
-                        <li class="nav-item active">
-                            <a class="nav-link" style="opacity: 1;" href="<%=nav.link%>"><h2><%=nav.title%></h2><span <%=nav.current%></span></a>
-                        </li>
-                        <% }) %>
-
+                        <% if(user){
+                            user_nav.forEach((user_nav)=>{ %>
+                                <li class="nav-item active">
+                                    <a class="nav-link" style="opacity: 1;" href="<%=user_nav.link%>"><h2><%=user_nav.title%></h2><span <%=user_nav.current%></span></a>
+                                </li>
+                                <% }); 
+                         } else{
+                            nav.forEach((nav)=>{ %>
+                            <li class="nav-item active">
+                                <a class="nav-link" style="opacity: 1;" href="<%=nav.link%>"><h2><%=nav.title%></h2><span <%=nav.current%></span></a>
+                            </li>
+                            <% }); 
+                         } %>
                     </ul>
 
                 </div>
             </nav>
 <!--First Jumbotron code-->
             <div class="jumbotron" >
-                <h1 class="display-1">Welcome to QuickFix Troy!</h1>
+                <h1 class="display-1"><%= title%></h1>
                 <p class="display-4">Get food from your favorite restaurants to your doorsteps.</p>
 
                 <hr class="my-2">

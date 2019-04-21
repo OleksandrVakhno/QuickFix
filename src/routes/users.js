@@ -99,11 +99,15 @@ router.get('/login', function(req, res){
 //login process
 router.post('/login', function(req, res, next){
     passport.authenticate('local', {
-      successRedirect:'/',
+      successRedirect:'/users/dashboard',
       failureRedirect:'/users/login',
       failureFlash: true
     })(req, res, next);
 });
+
+router.get('/dashboard', ensureAuthenticated, function(req,res,next){
+    res.render('dashboard');
+})
 
 //logout process
 router.get('/logout', function(req, res){
@@ -112,6 +116,15 @@ router.get('/logout', function(req, res){
   res.redirect('/users/login');
 });
 
+function ensureAuthenticated(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    else{
+        req.flash('danger','Please login');
+        res.redirect('/users/login');
+    }
+}
 
 
 module.exports = router;

@@ -59,6 +59,11 @@ require('./src/config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('*', function(req, res, next){
+    res.locals.user = req.user || null;
+    next();
+});
+
 
 const UsersRoute = require('./src/routes/users');
 
@@ -69,17 +74,23 @@ app.use('/users', UsersRoute);
 app.get('/', (req,res) => {
     
     res.render('index',{
+        
         nav: [
             { link: '/', title: 'Home', current: 'class="sr-only">(current)' },
             { link: '/users/register', title: 'Register' },
             { link: '/users/login', title: 'Log In' },
+            { link: '/about', title: 'About' },
+            { link: '/contact', title: 'Contact' }
+        ],
+        user_nav: [
+            { link: '/', title: 'Home', current: 'class="sr-only">(current)' },
             { link: '/users/logout', title: 'Log Out' },
             { link: '/about', title: 'About' },
             { link: '/contact', title: 'Contact' }
         ],
         title: "Welcome to QuickFix Troy!"
     });
-
+    
 })
 
 
