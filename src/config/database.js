@@ -11,6 +11,12 @@ const sequelize = new Sequelize('QuickFix', 'root', 'mysql1234', {
 
 //checking the connection
 sequelize
+  .sync({
+    logging: console.log,
+    force: false
+  });
+  
+sequelize
   .authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');

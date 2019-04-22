@@ -4,6 +4,12 @@ const db = require('../config/database')
 //creating a User model to reigter in database
 const User = db.define('user', {
     // attributes
+    ID: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
     name: {
       type: Sequelize.STRING,
       allowNull: false
@@ -27,7 +33,19 @@ const User = db.define('user', {
     password: {
         type: Sequelize.STRING,
         allowNull: false
-      }
+      },
+    organization: {
+        type:Sequelize.STRING,
+        allowNull: true
+    },
+    points: {
+      type:Sequelize.INTEGER,
+      allowNull: true
+    },
+    lastMeal: {
+      type:Sequelize.INTEGER,
+      allowNull: true
+    }
   }, {
     // options
   });
