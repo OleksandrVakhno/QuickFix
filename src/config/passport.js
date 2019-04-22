@@ -19,19 +19,11 @@ module.exports = (passport)=>{
     }));
   
   passport.serializeUser(function(user, done) {
-<<<<<<< HEAD
     done(null, user.id);
   });
   
   passport.deserializeUser(function(id, done) {
     User.findByPk(id)
-=======
-    done(null, user.userId);
-  });
-  
-  passport.deserializeUser(function(userId, done) {
-    User.findByPk(userId)
->>>>>>> origin/David
       .then(user=>{
         done(null, user);
       }).catch(err=>{
