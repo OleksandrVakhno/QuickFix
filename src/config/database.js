@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 
+
+
 //connecting to database
 const sequelize = new Sequelize('QuickFix', 'root', 'mysql1234', {
   host: 'localhost',

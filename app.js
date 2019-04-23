@@ -6,6 +6,7 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const passport = require('passport');
 const db = require('./src/config/database');
+const SequelizeStore = require('connect-session-sequelize')(session.Store); // module for storing session in a separate table database for guest usage
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
@@ -24,8 +25,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Express Session Middleware
 app.use(session({
     secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true
+    store: new SequelizeStore({ //storing the session
+        db: db,
+        checkExpirationInterval: 10 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+      }),
+      cookie: {
+          expires: 60 * 60 * 1000
+      },
+    resave: false,
+    saveUninitialized: false
   }));
   
 // Express Messages Middleware
@@ -61,6 +69,7 @@ app.use(passport.session());
 
 app.get('*', function(req, res, next){
     res.locals.user = req.user || null;
+    res.locals.session = req.session;
     next();
 });
 
