@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const expressValidator = require('express-validator');
@@ -17,6 +18,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './src/views'))
 
+app.use(cookieParser());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -29,11 +31,12 @@ app.use(session({
         db: db,
         checkExpirationInterval: 10 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
       }),
-      cookie: {
-          expires: 60 * 60 * 1000
-      },
+    cookie: {
+        maxAge: 60 * 60 * 1000
+    },
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true,
+    rolling: true
   }));
   
 // Express Messages Middleware
@@ -66,6 +69,7 @@ require('./src/config/passport')(passport);
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.get('*', function(req, res, next){
     res.locals.user = req.user || null;
