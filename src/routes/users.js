@@ -4,13 +4,15 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const db = require('../config/database');
 const {or} = require('sequelize').Op;
-
+const csurf = require('csurf');
+const csurfProtection = csurf();
+router.use(csurfProtection);
 //getting the user model
 const User = require ('../models/user');
 
 //displaying the register form
 router.get('/register', (req,res)=>{
-    res.render('register');
+    res.render('register',{csrfToken: req.csrfToken()});
 })
 
 
@@ -93,7 +95,7 @@ router.post('/register', (req, res)=> {
 
 //login form
 router.get('/login', function(req, res){
-    res.render('login');
+    res.render('login', {csrfToken: req.csrfToken()});
 });
 
 //login process
@@ -113,9 +115,6 @@ router.get('/dashboard', ensureAuthenticated, function(req,res,next){
 router.get('/logout', function(req, res){
   req.logout();
   req.flash('success', 'You are logged out');
-  req.session.destroy(function(err){
-    console.log(err);
-  });
   res.redirect('/users/login');
 });
 

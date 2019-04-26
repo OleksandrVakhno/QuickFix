@@ -9,6 +9,7 @@ const passport = require('passport');
 const db = require('./src/config/database');
 const SequelizeStore = require('connect-session-sequelize')(session.Store); // module for storing session in a separate table database for guest usage
 
+
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
 

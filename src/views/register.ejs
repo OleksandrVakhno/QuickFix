@@ -170,7 +170,9 @@
                                 <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" name="password2" >
                                 <label for="inputConfirmPassword">Confirm Password</label>
                               </div>
-                          
+                              
+                          <input type="hidden"  name="_csrf" value="<%= csrfToken %>">
+
                           <button class="btn btn-lg btn-success btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign up</button>
                           
                         </form>
