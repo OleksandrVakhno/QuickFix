@@ -80,8 +80,10 @@ app.get('*', function(req, res, next){
 
 
 const UsersRoute = require('./src/routes/users');
+const MenusRoute = require('./src/routes/menus');
 
 app.use('/users', UsersRoute);
+app.use('/menus', MenusRoute);
 
 
 //index.ejs rendering
@@ -91,6 +93,7 @@ app.get('/', (req,res) => {
         
         nav: [
             { link: '/', title: 'Home', current: 'class="sr-only">(current)' },
+            { link: '/menus/mcdonalds', title: 'Order' },
             { link: '/users/register', title: 'Register' },
             { link: '/users/login', title: 'Log In' },
             { link: '/about', title: 'About' },
@@ -98,6 +101,8 @@ app.get('/', (req,res) => {
         ],
         user_nav: [
             { link: '/', title: 'Home', current: 'class="sr-only">(current)' },
+            { link: '/users/ldashboard', title: 'My Account' },
+            { link: '/menus/mcdonalds', title: 'Order' },
             { link: '/users/logout', title: 'Log Out' },
             { link: '/about', title: 'About' },
             { link: '/contact', title: 'Contact' }

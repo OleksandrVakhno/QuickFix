@@ -17,6 +17,10 @@ const restaurant = db.define('restaurant', {
     restaurantDesc: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    backgroungImg: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
   }, {
     // options

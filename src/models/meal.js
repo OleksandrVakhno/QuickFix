@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-const db = require('../config/database')
+const db = require('../config/database');
+
 
 //creating a meal model hold all meals in database
 const meal = db.define('meal', {
@@ -22,9 +23,13 @@ const meal = db.define('meal', {
         type:Sequelize.INTEGER,
         allowNull: false,
         references: {
-            model: 'restaurant',
+            model: 'restaurants',
             key: 'restaurantId', 
         }
+    },
+    Img:{
+        type: Sequelize.STRING,
+        allowNull: true
     }
   }, {
     // options

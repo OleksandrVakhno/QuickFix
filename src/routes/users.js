@@ -6,7 +6,7 @@ const db = require('../config/database');
 const {or} = require('sequelize').Op;
 const csurf = require('csurf');
 const csurfProtection = csurf();
-router.use(csurfProtection);
+router.use(csurfProtection); //Token passed between pages to restrict CSRF attacks
 //getting the user model
 const User = require ('../models/user');
 
