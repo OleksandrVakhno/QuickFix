@@ -7,6 +7,36 @@ let meals = [
         price: 3.25,
         restaurantId: 1,
         Img: '/images/Meals/BigMac.png'
+    }),
+    new Meal({
+        mealName: 'BigMac',
+        price: 3.25,
+        restaurantId: 1,
+        Img: '/images/Meals/BigMac.png'
+    }),
+    new Meal({
+        mealName: 'BigMac',
+        price: 3.25,
+        restaurantId: 1,
+        Img: '/images/Meals/BigMac.png'
+    }),
+    new Meal({
+        mealName: 'BigMac',
+        price: 3.25,
+        restaurantId: 1,
+        Img: '/images/Meals/BigMac.png'
+    }),
+    new Meal({
+        mealName: 'BigMac',
+        price: 3.25,
+        restaurantId: 1,
+        Img: '/images/Meals/BigMac.png'
+    }),
+    new Meal({
+        mealName: 'BigMac',
+        price: 3.25,
+        restaurantId: 1,
+        Img: '/images/Meals/BigMac.png'
     })
 ]
 

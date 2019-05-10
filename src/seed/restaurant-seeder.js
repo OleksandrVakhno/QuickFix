@@ -3,7 +3,7 @@ const db = require('../config/database');
 
 let restaurants = [
     new Restaurant({
-        restaurantName: 'MacDonalds',
+        restaurantName: 'McDonalds',
         restaurantDesc: 'FastFood',
         backgroungImg: '/images/Restaurants/macdonalds.jpg'
     })

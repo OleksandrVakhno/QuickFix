@@ -9,6 +9,7 @@
 </head>
 <body>
 <div class="container-fluid">
+    <%- messages('flash-messages', locals) %>
     <div class="row">
         <% meals.forEach( meals=> { %>
             <div class="col-sm-6 col-md-4">
@@ -18,7 +19,7 @@
                         <h3><%= meals.mealName %></h3>
                         <div class="clearfix">
                             <div class="price pull-left">$<%= meals.price%></div>
-                            <a href="/add-to-cart/{{ this._id }}" class="btn btn-success pull-right" role="button">Add to Shopping Cart</a>
+                            <a href="/menus/add-to-cart/<%=meals.mealId%>" class="btn btn-success pull-right" role="button">Add to Shopping Cart</a>
                         </div>
                     </div>
                 </div>
